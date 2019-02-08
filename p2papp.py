@@ -3,6 +3,10 @@ import hashlib
 import socket
 import threading
 from cryptography.fernet import Fernet
+import smtplib
+import getpass
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 answer = input("Choose an option~\nClient or Server : ").lower()
@@ -50,7 +54,29 @@ if(answer == 'client'):
 
     cipher_suite = Fernet(key)
 
-    #plain_text = cipher_suite.decrypt(b"gAAAAABcW-t3SP5NWJpJCMqHR1fkURoffr_6HAvqV_PAmag09Drtj9syhwuWvxiMOiUlEBfbWlUf1Zn1dp3FzUf3tn6E2vazrTvUXfUD78u_JqUFJ-RWysvk9Zv8mKHjLf-GGVC-w1cQ").decode("utf-8")
+    #secret key sending via email
+    fromaddr = input("enter your email address : ") 
+    password = getpass.getpass("enter your password : ")
+    toaddr = input("enter recievers email address : ")
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr
+    msg['To'] = toaddr
+
+    sub = "Your Secret Key from " + fromaddr
+
+    msg['Subject'] = sub
+ 
+    body = "--Start of key--\n" + key.decode("utf-8") + "\n--End of key--"
+    msg.attach(MIMEText(body, 'plain'))
+ 
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddr,password)
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
+    print("email sent succesfully!") 
+
 
     HOST = '127.0.0.1'  # The server's hostname or IP address
     PORT = 65433        # The port used by the server

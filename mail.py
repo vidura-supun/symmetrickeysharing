@@ -1,7 +1,7 @@
 import smtplib
 import getpass
 from email.mime.multipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
  
 fromaddr = input("enter your email address : ") 
 password = getpass.getpass("enter your password : ")
@@ -10,7 +10,7 @@ msg = MIMEMultipart()
 msg['From'] = fromaddr
 msg['To'] = toaddr
 
-sub = input("enter message subject : ")
+sub = "Your Secret Key from " + fromaddr
 
 msg['Subject'] = sub
  
