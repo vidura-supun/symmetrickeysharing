@@ -1,9 +1,7 @@
-#!/usr/bin/python
-
 import smtplib
 import getpass
 from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email.MIMEText import MIMEText
  
 fromaddr = input("enter your email address : ") 
 password = getpass.getpass("enter your password : ")
