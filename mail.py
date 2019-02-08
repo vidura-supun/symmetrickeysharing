@@ -15,7 +15,6 @@ sub = raw_input("enter message subject : ")
 msg['Subject'] = sub
  
 body = raw_input("enter the message body : ")
-#body = "hi from the cli"
 msg.attach(MIMEText(body, 'plain'))
  
 server = smtplib.SMTP('smtp.gmail.com', 587)
