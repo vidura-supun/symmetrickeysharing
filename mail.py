@@ -1,6 +1,6 @@
 import smtplib
 import getpass
-from email.MIMEMultipart import MIMEMultipart
+from email.mime.multipart import MIMEMultipart
 from email.MIMEText import MIMEText
  
 fromaddr = raw_input("enter your email address : ") 
