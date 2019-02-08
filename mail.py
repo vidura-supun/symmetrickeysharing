@@ -3,18 +3,18 @@ import getpass
 from email.mime.multipart import MIMEMultipart
 from email.MIMEText import MIMEText
  
-fromaddr = raw_input("enter your email address : ") 
+fromaddr = input("enter your email address : ") 
 password = getpass.getpass("enter your password : ")
-toaddr = raw_input("enter recievers email address : ")
+toaddr = input("enter recievers email address : ")
 msg = MIMEMultipart()
 msg['From'] = fromaddr
 msg['To'] = toaddr
 
-sub = raw_input("enter message subject : ")
+sub = input("enter message subject : ")
 
 msg['Subject'] = sub
  
-body = raw_input("enter the message body : ")
+body = input("enter the message body : ")
 msg.attach(MIMEText(body, 'plain'))
  
 server = smtplib.SMTP('smtp.gmail.com', 587)
