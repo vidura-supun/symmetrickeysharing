@@ -1,4 +1,4 @@
-# symmetrickeysharing
+# symmetric key sharing
 Simple symmetric encryption/decryption program and a proposed key sharing
 
 Simple program that uses crypto library of python
